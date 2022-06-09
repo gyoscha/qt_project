@@ -7,10 +7,10 @@ class MyWindow(QtWidgets.QWidget):
 
 
 if __name__ == '__main__':
-    app = QtWidgets.QApplication()
+    app = QtWidgets.QApplication()   # создали цикл приложения
 
     win = MyWindow()
 
-    win.show()
+    win.show()   # высветили окно
 
-    app.exec_()
+    app.exec_()   # запустили приложения

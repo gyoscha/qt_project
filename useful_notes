@@ -1,0 +1,4 @@
+# 1. Преобразовать ui файл в python: pyside2-uic ???.ui > ui_???.py
+# 2. Чтобы открывалось MainWindow на Mac OS:
+#       import os
+#       os.environ['QT_MAC_WANTS_LAYER'] = '1'

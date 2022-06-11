@@ -1,6 +1,6 @@
 import sys
 from PySide2.QtWidgets import QApplication, QMainWindow
-from ui_cosmo import Ui_MainWindow
+from qt.UI.ui_cosmo import Ui_MainWindow
 
 import os
 os.environ['QT_MAC_WANTS_LAYER'] = '1'   # Прописываю, чтобы открывалось MainWindow на Mac OS

@@ -1,8 +1,8 @@
 from PySide2 import QtWidgets
 
 
-import os
-os.environ['QT_MAC_WANTS_LAYER'] = '1'   # Прописываю, чтобы открывалось MainWindow на Mac OS
+# import os
+# os.environ['QT_MAC_WANTS_LAYER'] = '1'   # Прописываю, чтобы открывалось MainWindow на Mac OS
 
 
 class MyWindow(QtWidgets.QWidget):

@@ -2,3 +2,5 @@
 # 2. Чтобы открывалось MainWindow на Mac OS:
 #       import os
 #       os.environ['QT_MAC_WANTS_LAYER'] = '1'
+# 3. Открыть дизайнер: pyside2-designer
+

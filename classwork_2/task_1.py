@@ -56,19 +56,27 @@ class MyWindow(QtWidgets.QMainWindow):
         # print(QtWidgets.QApplication.screenAt(self.pos()).size())
         # print(self.width())
         # print(self.height())
-        self.move(882, 0)
+        screenWidth = QtWidgets.QApplication.screenAt(self.pos()).size().width()
+        screenHeight = QtWidgets.QApplication.screenAt(self.pos()).size().height()
+        self.move(screenWidth - self.width(), 0)
 
     def onPBLBClicked(self):
         """ ЛЕВО-НИЗ """
-        self.move(0, 339)
+        screenWidth = QtWidgets.QApplication.screenAt(self.pos()).size().width()
+        screenHeight = QtWidgets.QApplication.screenAt(self.pos()).size().height()
+        self.move(0, screenHeight-self.height())
 
     def onPBRBClicked(self):
         """ ПРАВО-НИЗ """
-        self.move(882, 339)
+        screenWidth = QtWidgets.QApplication.screenAt(self.pos()).size().width()
+        screenHeight = QtWidgets.QApplication.screenAt(self.pos()).size().height()
+        self.move(screenWidth - self.width(), screenHeight - self.height())
 
     def onPBCClicked(self):
         """ Центр """
-        self.move(441, 169)
+        screenWidth = QtWidgets.QApplication.screenAt(self.pos()).size().width()
+        screenHeight = QtWidgets.QApplication.screenAt(self.pos()).size().height()
+        self.move(screenWidth/2 - self.width()/2, screenHeight/2 - self.height()/2)
 
 
 if __name__ == '__main__':

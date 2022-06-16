@@ -7,7 +7,7 @@ from classwork_2.UI.ui_classwork_2 import Ui_MainWindow
 # import os
 # os.environ['QT_MAC_WANTS_LAYER'] = '1'   # Прописываю, чтобы открывалось MainWindow на Mac OS
 
-
+# ToDo Переименовать все object names
 class MyWindow(QtWidgets.QMainWindow):
     def __init__(self, parent=None):   # Чтобы было отдельное окно parent = None
         super().__init__(parent)
@@ -95,7 +95,6 @@ class MyWindow(QtWidgets.QMainWindow):
             print(self.size())
 
         return QtWidgets.QWidget.event(self, event)
-
 
 
 if __name__ == '__main__':

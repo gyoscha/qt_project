@@ -78,6 +78,25 @@ class MyWindow(QtWidgets.QMainWindow):
         screenHeight = QtWidgets.QApplication.screenAt(self.pos()).size().height()
         self.move(screenWidth/2 - self.width()/2, screenHeight/2 - self.height()/2)
 
+    # EVENTS
+    def changeEvent(self, event: QtCore.QEvent) -> None:
+        """ Отслеживани состояния окна (свернуто/развёрнуто/активно/отображено + время) """
+        # print(event.type())
+        # ToDo Доделать
+        if event.type() == QtCore.QEvent.WindowStateChange:
+            if self.isMinimized():   # Для сворачивания окна
+                self.ui.plainTextEdit.appendPlainText('Окно свернуто')
+
+    def moveEvent(self, event: QtGui.QMoveEvent) -> None:
+        print(self.pos())
+
+    def event(self, event: QtCore.QEvent) -> bool:
+        if event.type() == QtCore.QEvent.Resize:   # Можно было просто переопределить def resizeEvent(self, event: QtGui.QResizeEvent) -> None:
+            print(self.size())
+
+        return QtWidgets.QWidget.event(self, event)
+
+
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication()   # создали цикл приложения

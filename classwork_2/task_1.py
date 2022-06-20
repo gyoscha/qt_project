@@ -10,7 +10,9 @@ os.environ['QT_MAC_WANTS_LAYER'] = '1'   # Прописываю, чтобы от
 class MyWindow(QtWidgets.QMainWindow):
     def __init__(self, parent=None):   # Чтобы было отдельное окно parent = None
         super().__init__(parent)
-        self.getSettingsValue()
+
+        self.settings_variables = QtCore.QSettings('MyWindow', 'Variables')
+        self.settings_mode = QtCore.QSettings('MyWindow', 'Mode')
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
@@ -35,18 +37,13 @@ class MyWindow(QtWidgets.QMainWindow):
 
         # SETTINGS
         self.lcd_value = self.settings_variables.value('lcd_value')
+        self.ui.slider.setValue(self.lcd_value)
+        self.ui.dial.setValue(self.lcd_value)
         self.ui.lcd.display(self.lcd_value)
 
-        # ToDo доделать сохранение режима отображения чисел!!! Остальное сделано.
-        # self.lcd_mode = self.settings_mode.value('lcd_mode')
-        # if self.lcd_mode is not None:
-        #     self.ui.lcd.setMode(self.lcd_mode)
-        # else:
-        #     self.ui.lcd.setHexMode()
-
-    def getSettingsValue(self):
-        self.settings_variables = QtCore.QSettings('MyWindow', 'Variables')
-        self.settings_mode = QtCore.QSettings('MyWindow', 'Mode')
+        self.lcd_mode = self.settings_mode.value('lcd_mode')
+        self.ui.comboBox.setCurrentText(self.lcd_mode)
+        self.changeLCDview()
 
     def getscreeninfo(self):
         """Получение параметров экрана"""
@@ -116,8 +113,6 @@ class MyWindow(QtWidgets.QMainWindow):
         a[self.ui.comboBox.currentText()]()
         print(self.ui.lcd.mode())
 
-        self.settings_mode.setValue('lcd_mode', self.ui.lcd.mode())  # SETTINGS
-
     # EVENTS
     def changeEvent(self, event: QtCore.QEvent) -> None:
         if event.type() == QtCore.QEvent.WindowStateChange:
@@ -170,7 +165,8 @@ class MyWindow(QtWidgets.QMainWindow):
                                                      QtWidgets.QMessageBox.No)
 
         if reply == QtWidgets.QMessageBox.Yes:
-            self.settings_variables.setValue('lcd_value', self.ui.lcd.value())   # SETTINGS
+            self.settings_variables.setValue('lcd_value', self.ui.lcd.value())  # SETTINGS
+            self.settings_mode.setValue('lcd_mode', self.ui.comboBox.currentText())   # SETTINGS
             event.accept()
         else:
             event.ignore()

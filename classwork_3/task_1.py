@@ -52,6 +52,7 @@ class QThreadPractice(QtWidgets.QWidget):
         if self.ui.pushButtonUrlCheckStart.isChecked():
             self.urlChecker.setUrl(self.ui.lineEditURL.text())
             self.urlChecker.setDelay(self.ui.spinBoxUrlCheckTime.value())
+            # ToDo добавить высвечивание предупреждения по ошибке ввода url
             self.urlChecker.start()
             self.ui.pushButtonUrlCheckStart.setText("Стоп")
         else:

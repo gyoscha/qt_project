@@ -131,7 +131,7 @@ class Ui_Form(object):
 
         self.spinBoxUrlCheckTime = QSpinBox(self.frame_2)
         self.spinBoxUrlCheckTime.setObjectName(u"spinBoxUrlCheckTime")
-        self.spinBoxUrlCheckTime.setMinimum(5)
+        self.spinBoxUrlCheckTime.setMinimum(1)
         self.spinBoxUrlCheckTime.setMaximum(6000)
 
         self.horizontalLayout_7.addWidget(self.spinBoxUrlCheckTime)

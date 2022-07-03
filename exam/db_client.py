@@ -1,7 +1,6 @@
 import sys
 
 from PySide2.QtCore import QDateTime
-from PySide2.QtGui import QIntValidator
 from PySide2.QtSql import QSqlQuery, QSqlTableModel
 from PySide2.QtWidgets import QApplication, QMainWindow, QDialog
 from PySide2 import QtSql, QtWidgets
@@ -10,6 +9,7 @@ from django.conf import settings
 from django.contrib.auth.hashers import check_password
 
 from exam.ui import ui_db, ui_login
+
 
 import os
 os.environ['QT_MAC_WANTS_LAYER'] = '1'   # Прописываю, чтобы открывалось MainWindow на Mac OS
@@ -20,6 +20,7 @@ settings.configure()  # конфигурация настроек джанги �
 
 
 class Login(QDialog):
+    """ Диалоговое окно авторизации """
     username = None
     id = None
 
@@ -30,8 +31,10 @@ class Login(QDialog):
         self.ui.setupUi(self)
 
         self.ui.pushButton_login.clicked.connect(self.HandleLogin)
+        self.ui.pushButton.clicked.connect(self.close)
 
     def HandleLogin(self):
+        """ Проверка имени пользователя и пароля """
         self.db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
         self.db.setDatabaseName(DB_PATH)  # путь до места, где находится БД
 
@@ -58,6 +61,7 @@ class Login(QDialog):
 
 
 class MyDBClient(QMainWindow):
+    """ Основное окно для работы с БД """
     def __init__(self, parent=None):  # Чтобы было отдельное окно parent = None
         super().__init__(parent)
 
@@ -78,6 +82,7 @@ class MyDBClient(QMainWindow):
         self.initSignals()
 
     def initSQLModel(self):
+        """ Инициализация модели БД и представление ее в нашем приложении """
         self.db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
         self.db.setDatabaseName(DB_PATH)   # путь до места, где находится БД
 
@@ -89,6 +94,7 @@ class MyDBClient(QMainWindow):
 
         self.ui.tableView.setModel(self.model)
         self.ui.tableView.setColumnHidden(0, True)   # Прячем столбец id
+        self.ui.tableView.setColumnHidden(8, True)  # Прячем столбец author_id
         self.ui.tableView.horizontalHeader().setSectionsMovable(True)   # Делаем таблицу подвижной
         self.ui.tableView.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
 
@@ -97,6 +103,7 @@ class MyDBClient(QMainWindow):
         self.ui.pushButtonDEL.clicked.connect(self.Delete)
 
     def Add(self):
+        """ Добавление записей в БД """
         index = self.model.rowCount()
 
         status = self.ui.comboBox_status.currentText()
@@ -143,6 +150,7 @@ class MyDBClient(QMainWindow):
         self.ui.checkBox_publish.setChecked(False)
 
     def Delete(self):
+        """ Удаление записей из БД """
         if self.ui.tableView.currentIndex().row() > -1:
             self.model.removeRow(self.ui.tableView.currentIndex().row())
             self.model.select()

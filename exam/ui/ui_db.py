@@ -17,13 +17,14 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(585, 615)
+        MainWindow.resize(864, 622)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName(u"gridLayout")
         self.groupBox = QGroupBox(self.centralwidget)
         self.groupBox.setObjectName(u"groupBox")
+        self.groupBox.setMinimumSize(QSize(840, 540))
         self.verticalLayout_2 = QVBoxLayout(self.groupBox)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout = QVBoxLayout()
@@ -32,16 +33,16 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.label = QLabel(self.groupBox)
         self.label.setObjectName(u"label")
-        self.label.setMinimumSize(QSize(100, 20))
-        self.label.setMaximumSize(QSize(100, 20))
+        self.label.setMinimumSize(QSize(120, 20))
+        self.label.setMaximumSize(QSize(120, 20))
         self.label.setLayoutDirection(Qt.LeftToRight)
 
         self.horizontalLayout.addWidget(self.label)
 
-        self.lineEdit = QLineEdit(self.groupBox)
-        self.lineEdit.setObjectName(u"lineEdit")
+        self.lineEdit_topic = QLineEdit(self.groupBox)
+        self.lineEdit_topic.setObjectName(u"lineEdit_topic")
 
-        self.horizontalLayout.addWidget(self.lineEdit)
+        self.horizontalLayout.addWidget(self.lineEdit_topic)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout)
@@ -50,15 +51,15 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.label_2 = QLabel(self.groupBox)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setMinimumSize(QSize(100, 20))
-        self.label_2.setMaximumSize(QSize(100, 20))
+        self.label_2.setMinimumSize(QSize(120, 20))
+        self.label_2.setMaximumSize(QSize(120, 20))
 
         self.horizontalLayout_2.addWidget(self.label_2)
 
-        self.lineEdit_2 = QLineEdit(self.groupBox)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
+        self.textEdit = QTextEdit(self.groupBox)
+        self.textEdit.setObjectName(u"textEdit")
 
-        self.horizontalLayout_2.addWidget(self.lineEdit_2)
+        self.horizontalLayout_2.addWidget(self.textEdit)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_2)
@@ -67,15 +68,15 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.label_3 = QLabel(self.groupBox)
         self.label_3.setObjectName(u"label_3")
-        self.label_3.setMinimumSize(QSize(100, 20))
-        self.label_3.setMaximumSize(QSize(100, 20))
+        self.label_3.setMinimumSize(QSize(120, 20))
+        self.label_3.setMaximumSize(QSize(120, 20))
 
         self.horizontalLayout_3.addWidget(self.label_3)
 
-        self.lineEdit_3 = QLineEdit(self.groupBox)
-        self.lineEdit_3.setObjectName(u"lineEdit_3")
+        self.comboBox_status = QComboBox(self.groupBox)
+        self.comboBox_status.setObjectName(u"comboBox_status")
 
-        self.horizontalLayout_3.addWidget(self.lineEdit_3)
+        self.horizontalLayout_3.addWidget(self.comboBox_status)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_3)
@@ -84,15 +85,15 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.label_4 = QLabel(self.groupBox)
         self.label_4.setObjectName(u"label_4")
-        self.label_4.setMinimumSize(QSize(100, 20))
-        self.label_4.setMaximumSize(QSize(100, 20))
+        self.label_4.setMinimumSize(QSize(120, 20))
+        self.label_4.setMaximumSize(QSize(120, 20))
 
         self.horizontalLayout_4.addWidget(self.label_4)
 
-        self.lineEdit_4 = QLineEdit(self.groupBox)
-        self.lineEdit_4.setObjectName(u"lineEdit_4")
+        self.checkBox_importance = QCheckBox(self.groupBox)
+        self.checkBox_importance.setObjectName(u"checkBox_importance")
 
-        self.horizontalLayout_4.addWidget(self.lineEdit_4)
+        self.horizontalLayout_4.addWidget(self.checkBox_importance)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_4)
@@ -101,66 +102,34 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.label_5 = QLabel(self.groupBox)
         self.label_5.setObjectName(u"label_5")
-        self.label_5.setMinimumSize(QSize(100, 20))
-        self.label_5.setMaximumSize(QSize(100, 20))
+        self.label_5.setMinimumSize(QSize(120, 20))
+        self.label_5.setMaximumSize(QSize(120, 20))
 
         self.horizontalLayout_5.addWidget(self.label_5)
 
-        self.lineEdit_5 = QLineEdit(self.groupBox)
-        self.lineEdit_5.setObjectName(u"lineEdit_5")
+        self.checkBox_publish = QCheckBox(self.groupBox)
+        self.checkBox_publish.setObjectName(u"checkBox_publish")
 
-        self.horizontalLayout_5.addWidget(self.lineEdit_5)
+        self.horizontalLayout_5.addWidget(self.checkBox_publish)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_5)
-
-        self.horizontalLayout_6 = QHBoxLayout()
-        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
-        self.label_6 = QLabel(self.groupBox)
-        self.label_6.setObjectName(u"label_6")
-        self.label_6.setMinimumSize(QSize(100, 20))
-        self.label_6.setMaximumSize(QSize(100, 20))
-
-        self.horizontalLayout_6.addWidget(self.label_6)
-
-        self.lineEdit_6 = QLineEdit(self.groupBox)
-        self.lineEdit_6.setObjectName(u"lineEdit_6")
-
-        self.horizontalLayout_6.addWidget(self.lineEdit_6)
-
-
-        self.verticalLayout.addLayout(self.horizontalLayout_6)
-
-        self.horizontalLayout_7 = QHBoxLayout()
-        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
-        self.label_7 = QLabel(self.groupBox)
-        self.label_7.setObjectName(u"label_7")
-        self.label_7.setMinimumSize(QSize(100, 20))
-        self.label_7.setMaximumSize(QSize(100, 20))
-
-        self.horizontalLayout_7.addWidget(self.label_7)
-
-        self.lineEdit_7 = QLineEdit(self.groupBox)
-        self.lineEdit_7.setObjectName(u"lineEdit_7")
-
-        self.horizontalLayout_7.addWidget(self.lineEdit_7)
-
-
-        self.verticalLayout.addLayout(self.horizontalLayout_7)
 
         self.horizontalLayout_8 = QHBoxLayout()
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
         self.label_8 = QLabel(self.groupBox)
         self.label_8.setObjectName(u"label_8")
-        self.label_8.setMinimumSize(QSize(100, 20))
-        self.label_8.setMaximumSize(QSize(100, 20))
+        self.label_8.setMinimumSize(QSize(120, 20))
+        self.label_8.setMaximumSize(QSize(120, 20))
 
         self.horizontalLayout_8.addWidget(self.label_8)
 
-        self.lineEdit_8 = QLineEdit(self.groupBox)
-        self.lineEdit_8.setObjectName(u"lineEdit_8")
+        self.lineEdit_author = QLineEdit(self.groupBox)
+        self.lineEdit_author.setObjectName(u"lineEdit_author")
+        self.lineEdit_author.setEnabled(True)
+        self.lineEdit_author.setReadOnly(True)
 
-        self.horizontalLayout_8.addWidget(self.lineEdit_8)
+        self.horizontalLayout_8.addWidget(self.lineEdit_author)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_8)
@@ -201,7 +170,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 585, 21))
+        self.menubar.setGeometry(QRect(0, 0, 864, 24))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -219,9 +188,9 @@ class Ui_MainWindow(object):
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"\u0422\u0435\u043a\u0441\u0442 \u0437\u0430\u043c\u0435\u0442\u043a\u0438", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0430\u0442\u0443\u0441", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"\u0412\u0430\u0436\u043d\u043e", None))
+        self.checkBox_importance.setText("")
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"\u041e\u043f\u0443\u0431\u043b\u0438\u043a\u043e\u0432\u0430\u0442\u044c", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0440\u043e\u043a \u0432\u044b\u043f\u043e\u043b\u043d\u0435\u043d\u0438\u044f", None))
-        self.label_7.setText(QCoreApplication.translate("MainWindow", u"\u0412\u0440\u0435\u043c\u044f \u0441\u043e\u0437\u0434\u0430\u043d\u0438\u044f", None))
+        self.checkBox_publish.setText("")
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"\u0410\u0432\u0442\u043e\u0440", None))
         self.pushButtonADD.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
         self.pushButtonDEL.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c", None))

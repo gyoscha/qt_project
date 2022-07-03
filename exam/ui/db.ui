@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>585</width>
-    <height>615</height>
+    <width>864</width>
+    <height>622</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,6 +17,12 @@
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QGroupBox" name="groupBox">
+      <property name="minimumSize">
+       <size>
+        <width>840</width>
+        <height>540</height>
+       </size>
+      </property>
       <property name="title">
        <string>Заметки для ведения списка дел</string>
       </property>
@@ -29,13 +35,13 @@
             <widget class="QLabel" name="label">
              <property name="minimumSize">
               <size>
-               <width>100</width>
+               <width>120</width>
                <height>20</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>100</width>
+               <width>120</width>
                <height>20</height>
               </size>
              </property>
@@ -48,7 +54,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit"/>
+            <widget class="QLineEdit" name="lineEdit_topic"/>
            </item>
           </layout>
          </item>
@@ -58,13 +64,13 @@
             <widget class="QLabel" name="label_2">
              <property name="minimumSize">
               <size>
-               <width>100</width>
+               <width>120</width>
                <height>20</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>100</width>
+               <width>120</width>
                <height>20</height>
               </size>
              </property>
@@ -74,7 +80,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_2"/>
+            <widget class="QTextEdit" name="textEdit"/>
            </item>
           </layout>
          </item>
@@ -84,13 +90,13 @@
             <widget class="QLabel" name="label_3">
              <property name="minimumSize">
               <size>
-               <width>100</width>
+               <width>120</width>
                <height>20</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>100</width>
+               <width>120</width>
                <height>20</height>
               </size>
              </property>
@@ -100,7 +106,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_3"/>
+            <widget class="QComboBox" name="comboBox_status"/>
            </item>
           </layout>
          </item>
@@ -110,13 +116,13 @@
             <widget class="QLabel" name="label_4">
              <property name="minimumSize">
               <size>
-               <width>100</width>
+               <width>120</width>
                <height>20</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>100</width>
+               <width>120</width>
                <height>20</height>
               </size>
              </property>
@@ -126,7 +132,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_4"/>
+            <widget class="QCheckBox" name="checkBox_importance">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
@@ -136,13 +146,13 @@
             <widget class="QLabel" name="label_5">
              <property name="minimumSize">
               <size>
-               <width>100</width>
+               <width>120</width>
                <height>20</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>100</width>
+               <width>120</width>
                <height>20</height>
               </size>
              </property>
@@ -152,59 +162,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_5"/>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_6">
-           <item>
-            <widget class="QLabel" name="label_6">
-             <property name="minimumSize">
-              <size>
-               <width>100</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>100</width>
-               <height>20</height>
-              </size>
-             </property>
+            <widget class="QCheckBox" name="checkBox_publish">
              <property name="text">
-              <string>Срок выполнения</string>
+              <string/>
              </property>
             </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="lineEdit_6"/>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_7">
-           <item>
-            <widget class="QLabel" name="label_7">
-             <property name="minimumSize">
-              <size>
-               <width>100</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>100</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Время создания</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="lineEdit_7"/>
            </item>
           </layout>
          </item>
@@ -214,13 +176,13 @@
             <widget class="QLabel" name="label_8">
              <property name="minimumSize">
               <size>
-               <width>100</width>
+               <width>120</width>
                <height>20</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>100</width>
+               <width>120</width>
                <height>20</height>
               </size>
              </property>
@@ -230,7 +192,14 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_8"/>
+            <widget class="QLineEdit" name="lineEdit_author">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
@@ -300,8 +269,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>585</width>
-     <height>21</height>
+     <width>864</width>
+     <height>24</height>
     </rect>
    </property>
   </widget>

@@ -5,6 +5,10 @@ from PySide2 import QtCore, QtWidgets
 from ui import P3_HardwareIndependentIO_QThread_design
 
 
+import os
+os.environ['QT_MAC_WANTS_LAYER'] = '1'   # Прописываю, чтобы открывалось MainWindow на Mac OS
+
+
 class QThreadPractice(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)

@@ -4,7 +4,6 @@ from PySide2.QtCore import QDateTime
 from PySide2.QtSql import QSqlQuery, QSqlTableModel
 from PySide2.QtWidgets import QApplication, QMainWindow, QDialog
 from PySide2 import QtSql, QtWidgets
-
 from django.conf import settings
 from django.contrib.auth.hashers import check_password
 
@@ -27,13 +26,16 @@ class Login(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
 
+        self.model = None
+        self.db = None
+
         self.ui = ui_login.Ui_Form()
         self.ui.setupUi(self)
 
-        self.ui.pushButton_login.clicked.connect(self.HandleLogin)
+        self.ui.pushButton_login.clicked.connect(self.handle_login)
         self.ui.pushButton.clicked.connect(self.close)
 
-    def HandleLogin(self):
+    def handle_login(self):
         """ Проверка имени пользователя и пароля """
         self.db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
         self.db.setDatabaseName(DB_PATH)  # путь до места, где находится БД
@@ -77,11 +79,11 @@ class MyDBClient(QMainWindow):
 
         self.ui.lineEdit_author.setText(f'{Login().username}')
 
-        self.initSQLModel()
+        self.init_sql_model()
 
-        self.initSignals()
+        self.init_signals()
 
-    def initSQLModel(self):
+    def init_sql_model(self):
         """ Инициализация модели БД и представление ее в нашем приложении """
         self.db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
         self.db.setDatabaseName(DB_PATH)   # путь до места, где находится БД
@@ -98,11 +100,11 @@ class MyDBClient(QMainWindow):
         self.ui.tableView.horizontalHeader().setSectionsMovable(True)   # Делаем таблицу подвижной
         self.ui.tableView.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
 
-    def initSignals(self):
-        self.ui.pushButtonADD.clicked.connect(self.Add)
-        self.ui.pushButtonDEL.clicked.connect(self.Delete)
+    def init_signals(self):
+        self.ui.pushButtonADD.clicked.connect(self.add)
+        self.ui.pushButtonDEL.clicked.connect(self.delete)
 
-    def Add(self):
+    def add(self):
         """ Добавление записей в БД """
         index = self.model.rowCount()
 
@@ -149,7 +151,7 @@ class MyDBClient(QMainWindow):
         self.ui.checkBox_importance.setChecked(False)
         self.ui.checkBox_publish.setChecked(False)
 
-    def Delete(self):
+    def delete(self):
         """ Удаление записей из БД """
         if self.ui.tableView.currentIndex().row() > -1:
             self.model.removeRow(self.ui.tableView.currentIndex().row())

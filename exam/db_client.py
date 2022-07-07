@@ -1,4 +1,5 @@
 import sys
+import platform
 
 from PySide2.QtCore import QDateTime
 from PySide2.QtSql import QSqlQuery, QSqlTableModel
@@ -10,11 +11,13 @@ from django.contrib.auth.hashers import check_password
 from exam.ui import ui_db, ui_login
 
 
-import os
-os.environ['QT_MAC_WANTS_LAYER'] = '1'   # Прописываю, чтобы открывалось MainWindow на Mac OS
+if platform.system() == 'Windows':
+    DB_PATH = r'C:\Users\geosok\PycharmProjects\todo_list\db.sqlite3'   # на Windows
+else:
+    DB_PATH = '/Users/georgysokolov/PycharmProjects/todo_list/db.sqlite3'   # Mac
+    import os
+    os.environ['QT_MAC_WANTS_LAYER'] = '1'   # Прописываю, чтобы открывалось на Mac OS
 
-
-DB_PATH = '/Users/georgysokolov/PycharmProjects/todo_list/db.sqlite3'
 settings.configure()  # конфигурация настроек джанги для check_password
 
 
@@ -48,14 +51,14 @@ class Login(QDialog):
         query = QSqlQuery()
         query.exec_(f"SELECT id, username, password FROM auth_user WHERE username == '{self.ui.lineEdit_name.text()}' ")
 
-        query.first()   # Первая запись
+        query.first()  # Первая запись
         if query.value('username') is None:
             QtWidgets.QMessageBox.warning(
                 self, 'Error;', 'Введен неверный логин!')
         else:
             if check_password(self.ui.lineEdit_password.text(), query.value('password')):
-                Login.username = query.value('username')   # Сохраняем нашего пользователя
-                Login.id = query.value('id')
+                Login.username = query.value('username')  # Сохраняем нашего пользователя
+                Login.id = query.value('id')   # Сохраняем его id
                 self.accept()
             else:
                 QtWidgets.QMessageBox.warning(
@@ -64,6 +67,7 @@ class Login(QDialog):
 
 class MyDBClient(QMainWindow):
     """ Основное окно для работы с БД """
+
     def __init__(self, parent=None):  # Чтобы было отдельное окно parent = None
         super().__init__(parent)
 
@@ -86,18 +90,18 @@ class MyDBClient(QMainWindow):
     def init_sql_model(self):
         """ Инициализация модели БД и представление ее в нашем приложении """
         self.db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
-        self.db.setDatabaseName(DB_PATH)   # путь до места, где находится БД
+        self.db.setDatabaseName(DB_PATH)  # путь до места, где находится БД
 
         self.model = QtSql.QSqlTableModel()
-        self.model.setTable('note_note')   # выбираем нужную таблицу из БД
+        self.model.setTable('note_note')  # выбираем нужную таблицу из БД
 
         self.model.select()
-        self.model.setEditStrategy(QSqlTableModel.OnFieldChange)   # чтобы можно было менять значения в БД из таблицы
+        self.model.setEditStrategy(QSqlTableModel.OnFieldChange)  # чтобы можно было менять значения в БД из таблицы
 
         self.ui.tableView.setModel(self.model)
-        self.ui.tableView.setColumnHidden(0, True)   # Прячем столбец id
-        self.ui.tableView.setColumnHidden(8, True)  # Прячем столбец author_id
-        self.ui.tableView.horizontalHeader().setSectionsMovable(True)   # Делаем таблицу подвижной
+        self.ui.tableView.setColumnHidden(0, True)  # Прячем столбец id
+        # self.ui.tableView.setColumnHidden(8, True)  # Прячем столбец author_id
+        self.ui.tableView.horizontalHeader().setSectionsMovable(True)  # Делаем таблицу подвижной
         self.ui.tableView.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
 
     def init_signals(self):
@@ -161,9 +165,9 @@ class MyDBClient(QMainWindow):
 
     def closeEvent(self, event):
         reply = QtWidgets.QMessageBox.question(self, "Закрыть окно",
-                                                     "Вы хотите закрыть окно?",
-                                                     QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
-                                                     QtWidgets.QMessageBox.No)
+                                               "Вы хотите закрыть окно?",
+                                               QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No,
+                                               QtWidgets.QMessageBox.No)
 
         if reply == QtWidgets.QMessageBox.Yes:
             event.accept()
